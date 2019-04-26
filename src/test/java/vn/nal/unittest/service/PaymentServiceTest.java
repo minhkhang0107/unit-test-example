@@ -1,6 +1,5 @@
 package vn.nal.unittest.service;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -12,6 +11,10 @@ import vn.nal.unittest.model.Customer;
 import vn.nal.unittest.model.Payment;
 import vn.nal.unittest.repository.CustomerRepository;
 import vn.nal.unittest.repository.PaymentRepository;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class PaymentServiceTest {
 
@@ -47,11 +50,11 @@ public class PaymentServiceTest {
 
         Payment paymentResult = service.payByCash(customerCode, totalAmount);
 
-        Assert.assertNotNull(paymentResult);
-        Assert.assertTrue(paymentResult.getCode().matches("CUS00001-[0-9]{2}-000100"));
-        Assert.assertEquals(paymentResult.getPaymentMethod(), PaymentMethod.CASH);
-        Assert.assertEquals(paymentResult.getTotalAmount(), new Double(totalAmount + totalAmount * 0.1));
-        Assert.assertEquals(paymentResult.getCustomer(), customer);
+        assertNotNull(paymentResult);
+        assertTrue(paymentResult.getCode().matches("CUS00001-[0-9]{2}-000100"));
+        assertEquals(PaymentMethod.CASH, paymentResult.getPaymentMethod());
+        assertEquals(new Double(totalAmount + totalAmount * 0.1), paymentResult.getTotalAmount());
+        assertEquals(customer, paymentResult.getCustomer());
     }
 
     @Test
@@ -64,11 +67,11 @@ public class PaymentServiceTest {
 
         Payment paymentResult = service.payByCash(customerCode, totalAmount);
 
-        Assert.assertNotNull(paymentResult);
-        Assert.assertTrue(paymentResult.getCode().matches("CUS00001-[0-9]{2}-000001"));
-        Assert.assertEquals(paymentResult.getPaymentMethod(), PaymentMethod.CASH);
-        Assert.assertEquals(paymentResult.getTotalAmount(), new Double(totalAmount + totalAmount * 0.1));
-        Assert.assertEquals(paymentResult.getCustomer(), customer);
+        assertNotNull(paymentResult);
+        assertTrue(paymentResult.getCode().matches("CUS00001-[0-9]{2}-000001"));
+        assertEquals(PaymentMethod.CASH, paymentResult.getPaymentMethod());
+        assertEquals(new Double(totalAmount + totalAmount * 0.1), paymentResult.getTotalAmount());
+        assertEquals(customer, paymentResult.getCustomer());
     }
 
     @Test(expected = IllegalArgumentException.class)

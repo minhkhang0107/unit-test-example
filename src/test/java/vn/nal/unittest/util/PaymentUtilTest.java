@@ -1,6 +1,5 @@
 package vn.nal.unittest.util;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -22,7 +21,7 @@ public class PaymentUtilTest {
 
         String expectedCode = A_CUSTOMER_CODE + "-" + currentYear + "-000001";
 
-        assertEquals(PaymentUtil.generateCode(A_CUSTOMER_CODE, paymentOrder), expectedCode);
+        assertEquals(expectedCode, PaymentUtil.generateCode(A_CUSTOMER_CODE, paymentOrder));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -52,8 +51,8 @@ public class PaymentUtilTest {
 
     @Test
     public void getPaymentOrder_ReturnsCorrectPaymentOrder_IfPaymentCodeIsValid() {
-        Integer code = PaymentUtil.getPaymentOrder(A_PAYMENT_CODE);
-        assertEquals(code, new Integer(99));
+        int code = PaymentUtil.getPaymentOrder(A_PAYMENT_CODE);
+        assertEquals(99, code);
     }
 
     // TODO: Implement others unit test for all of PaymentUtil's method here

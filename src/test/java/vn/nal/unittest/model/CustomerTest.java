@@ -10,21 +10,21 @@ public class CustomerTest {
         Customer customer = new Customer();
         customer.setFirstName("Jon");
         customer.setLastName("Snow");
-        Assert.assertEquals(customer.getFullName(), "Jon Snow");
+        Assert.assertEquals("Jon Snow", customer.getFullName());
     }
 
     @Test
     public void getFullName_ValidFullName_IfFirstNameIsNull() {
         Customer customer = new Customer();
         customer.setLastName("Snow");
-        Assert.assertEquals(customer.getFullName(), "Snow");
+        Assert.assertEquals("Snow", customer.getFullName());
     }
 
     @Test
     public void getFullName_ValidFullName_IfLastNameIsNull() {
         Customer customer = new Customer();
         customer.setFirstName("Jon");
-        Assert.assertEquals(customer.getFullName(), "Jon");
+        Assert.assertEquals("Jon", customer.getFullName());
     }
 
     @Test
